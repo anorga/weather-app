@@ -1,37 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import {LocationSearch} from "./LocationSearch"
+import {LocationTable} from "./LocationTable"
 
 function App() {
-  const [locationSearch, setLocationSearch] = useState('Paris');
-  const [locations, setLocations] = useState(['Belfast', 'Dublin']);
+  const [locations, setLocations] = useState<string[]>([]);
+  const addLocation = (location: string) => setLocations([location, ...locations]);
+
   return (
-    <div>
+    <div className='container'>
       <h1>Weather App</h1>
-
-      <div>
-        <label>
-          Add Location
-          <input type="text" value={locationSearch} onChange= {e => setLocationSearch(e.target.value)} />
-        </label>
-      </div>
-
-<div>
-  <h2>Locations</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      {locations.map((location, index )=> 
-        <tr key={index}><td>{location}</td></tr>)}
-    </tbody>
-  </table>
-</div>
-
-
-
+      <LocationSearch onSearch={addLocation}/>
+      <LocationTable locations={locations}/>
     </div>
   );
 }
