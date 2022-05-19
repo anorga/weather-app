@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
 function App() {
+  const [locationSearch, setLocationSearch] = useState('Paris');
+  const [locations, setLocations] = useState(['Belfast', 'Dublin']);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Weather App</h1>
+
+      <div>
+        <label>
+          Add Location
+          <input type="text" value={locationSearch} onChange= {e => setLocationSearch(e.target.value)} />
+        </label>
+      </div>
+
+<div>
+  <h2>Locations</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {locations.map((location, index )=> 
+        <tr key={index}><td>{location}</td></tr>)}
+    </tbody>
+  </table>
+</div>
+
+
+
     </div>
   );
 }
