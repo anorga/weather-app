@@ -1,0 +1,7 @@
+body {
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(232,238,245,1) 100%);
+}
+.weatherinput {
+    margin: 0 5px;
+}
