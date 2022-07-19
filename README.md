@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Weather Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Weather application that displays daily forecast in cities of choice.
+
+This Single Page Application was built using React, TypeScript, and Bootstrap.
 
 ## Available Scripts
 
