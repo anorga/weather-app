@@ -2,7 +2,7 @@
 
 Weather application that displays daily forecast in cities of choice.
 
-This Single Page Application was built using React, TypeScript, and Bootstrap.
+This Single Page Application was built using React with TypeScript, Bootstrap, and Open Weather API.
 
 ## Available Scripts
 
