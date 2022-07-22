@@ -4,6 +4,8 @@ Weather application that displays daily forecast in cities of choice.
 
 This Single Page Application was built using React with TypeScript, Bootstrap, and the Open Weather API.
 
+<img width="1595" alt="weatherapp" src="https://user-images.githubusercontent.com/16889754/180377401-f322656a-305f-4b38-945c-9cfefcd39e25.png">
+
 ## Available Scripts
 
 In the project directory, you can run:
