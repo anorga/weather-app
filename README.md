@@ -1,52 +1,43 @@
-# Weather Application
+# Atmos
 
-Weather application that displays daily forecast in cities of choice.
+A calm, responsive weather dashboard. Built with React, TypeScript, and Vite, with an original SVG landscape, Lucide icons, and a warm editorial interface.
 
-This Single Page Application was built using React with TypeScript, Bootstrap, and the Open Weather API.
+## Run locally
 
-Hosted on AWS: https://master.d1g2odaawq5ejv.amplifyapp.com/
+Use Node.js 22.12+ (Node 24 recommended).
 
-<img width="1418" alt="weatherapp" src="https://user-images.githubusercontent.com/16889754/180564321-6b1b6aea-0a08-4280-8241-5b885fc62530.png">
+```sh
+npm ci
+npm run dev
+```
 
-## Available Scripts
+Open the local URL printed by Vite. No API key or environment file is needed.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Worldwide city search with disambiguated results and debounced requests
+- Current conditions, 12 hourly forecasts, and a seven-day outlook
+- Weather-aware landscapes for clear, cloudy, rainy, snowy, foggy, and stormy conditions, with day/night variants
+- A "Best time outside" card comparing two-hour daylight windows in the next 24 hours, with visible forecast evidence and an expandable explanation
+- Celsius/Fahrenheit switching, humidity, wind, UV, sunrise and sunset
+- Up to eight saved places persisted locally; optional browser geolocation
+- Responsive layouts, keyboard controls, reduced-motion support, and explicit loading/error states
+- Abortable requests and request timeouts; location changes cancel outdated forecasts
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```sh
+npm test       # Forecast, outdoor recommendation, and scenery tests
+npm run build # Type checking and production bundle
+npm run preview
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Deploy the generated `dist/` folder to a static host. Geolocation requires HTTPS or localhost. The app requests public Open-Meteo APIs directly from the browser. Forecast times use the selected location's time zone; displayed data is model output, not a weather-station observation. Network errors are shown explicitly; no simulated weather is substituted.
 
-### `npm test`
+## Data and credits
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Open-Meteo](https://open-meteo.com/) supplies weather data; [GeoNames](https://www.geonames.org/) supplies location data via Open-Meteo. The public Open-Meteo API is for non-commercial use and has usage limits; review their terms before commercial deployment. Location coordinates are sent to Open-Meteo only when the user requests local weather. Saved cities stay in this browser's local storage. Fonts are DM Sans and Manrope via Google Fonts, with system fallbacks. Icons are from Lucide.
 
-### `npm run build`
+Development branch: `staging`. Production branch: `master`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Outdoor recommendation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This is a transparent comfort heuristic, not a safety assessment. It requires clear/cloudy weather codes, a maximum precipitation probability of 30%, wind at or below 25 km/h, and feels-like temperatures between 10°C and 28°C at both boundaries and the middle of a two-hour daylight window. It ranks eligible windows by `2 × peak rain probability + peak wind speed + mean distance from 20°C`, preferring earlier times on ties. Precipitation probability uses the two ending timestamps because Open-Meteo defines it for the preceding hour. Incomplete measurements, missing hours, and unsuitable conditions produce an explicit unavailable state. UV, air quality, and weather alerts are not included.
